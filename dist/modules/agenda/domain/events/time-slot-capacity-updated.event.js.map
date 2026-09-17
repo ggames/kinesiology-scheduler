@@ -1,0 +1,1 @@
+{"version":3,"file":"time-slot-capacity-updated.event.js","sourceRoot":"","sources":["../../../../../src/modules/agenda/domain/events/time-slot-capacity-updated.event.ts"],"names":[],"mappings":";;;AAIA,MAAa,4BAA4B;IAErB;IACA;IACA;IAHlB,YACkB,MAAc,EACd,iBAAyB,EACzB,MAAc;QAFd,WAAM,GAAN,MAAM,CAAQ;QACd,sBAAiB,GAAjB,iBAAiB,CAAQ;QACzB,WAAM,GAAN,MAAM,CAAQ;IAC7B,CAAC;CACL;AAND,oEAMC"}
