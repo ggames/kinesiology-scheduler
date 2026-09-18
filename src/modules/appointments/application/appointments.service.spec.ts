@@ -1,4 +1,4 @@
-declare const jest: any;
+import { jest } from '@jest/globals';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken, getDataSourceToken } from '@nestjs/typeorm';
 import { ConflictException, BadRequestException, NotFoundException } from '@nestjs/common';
@@ -6,6 +6,7 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { AppointmentsService } from './appointments.service';
 import { Appointment } from '../domain/appointment.entity';
 import { TimeSlot, TimeSlotStatus } from '../../agenda/time-slot/domain/time-slot.entity';
+import { DailyAgenda } from '../../agenda/daily-agenda/domain/daily-agenda.entity';
 
 // Fecha futura para evitar rechazo por fecha pasada en tests normales
 const futureDate = new Date();
@@ -52,9 +53,15 @@ describe('AppointmentsService', () => {
   let eventEmitter: EventEmitter2;
 
   const buildManagerMock = (slot: TimeSlot | null) => ({
-    findOne: jest.fn().mockImplementation(async () => slot ? { ...slot } : null),
+    findOne: jest.fn().mockImplementation(async (entity: any) => {
+      if (entity === TimeSlot) return slot ? { ...slot } : null;
+      if (entity === DailyAgenda) return slot?.agenda ? { ...slot.agenda } : null;
+      if (entity === Appointment) return { id: 'appt-1', ...createDto };
+      return null;
+    }),
     find: jest.fn().mockResolvedValue([]),
-    create: jest.fn().mockReturnValue({ id: 'appt-1', ...createDto }),
+    count: jest.fn().mockResolvedValue(0),
+    create: jest.fn().mockImplementation((_target: any, dto: any) => ({ id: 'appt-1', ...dto })),
     save: jest.fn().mockImplementation(async (_target: any, entity: any) => entity),
   });
 

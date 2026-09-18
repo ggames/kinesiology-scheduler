@@ -48,6 +48,9 @@ export class CalendarGeneratorService implements OnModuleInit {
    * las crea automáticamente para garantizar la disponibilidad inmediata del sistema.
    */
   async onModuleInit() {
+    if (process.env.NODE_ENV === 'test') {
+      return;
+    }
     this.logger.log('Initializing CalendarGeneratorService: checking seed templates and 2-month rolling window...');
     try {
       await this.ensureSeedTemplatesAndClinics();

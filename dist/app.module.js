@@ -29,7 +29,9 @@ exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            config_1.ConfigModule.forRoot({ isGlobal: true }),
+            config_1.ConfigModule.forRoot({
+                isGlobal: true
+            }),
             event_emitter_1.EventEmitterModule.forRoot(),
             schedule_1.ScheduleModule.forRoot(),
             database_module_1.DatabaseModule,

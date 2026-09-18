@@ -1,4 +1,4 @@
-declare const jest: any;
+import { jest } from '@jest/globals';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken, getDataSourceToken } from '@nestjs/typeorm';
 import { CalendarGeneratorService } from './calendar-generator.service';

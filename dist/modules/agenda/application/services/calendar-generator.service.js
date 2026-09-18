@@ -46,6 +46,9 @@ let CalendarGeneratorService = CalendarGeneratorService_1 = class CalendarGenera
         this.dataSource = dataSource;
     }
     async onModuleInit() {
+        if (process.env.NODE_ENV === 'test') {
+            return;
+        }
         this.logger.log('Initializing CalendarGeneratorService: checking seed templates and 2-month rolling window...');
         try {
             await this.ensureSeedTemplatesAndClinics();

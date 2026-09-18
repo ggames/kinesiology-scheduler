@@ -40,6 +40,7 @@ const config: Config = {
   ],
   coverageDirectory: './coverage',
   testEnvironment: 'node',
+  injectGlobals: true,
 };
 
 export default config;

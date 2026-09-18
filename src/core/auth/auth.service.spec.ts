@@ -1,4 +1,4 @@
-declare const jest: any;
+import { jest } from '@jest/globals';
 import { Test, TestingModule } from '@nestjs/testing';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';

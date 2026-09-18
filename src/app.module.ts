@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { DatabaseModule } from './core/database/database.module';
@@ -14,10 +14,26 @@ import { HealthModule } from './health/health.module';
 import { TreatmentsModule } from './modules/treatments/treatments.module';
 import { MedicalHistoriesModule } from './modules/medical-histories/medical-histories.module';
 import { PersonsModule } from './modules/persons/persons.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({
+       //envFilePath: '.env.${process.env.NODE_ENV}' ,
+       isGlobal: true }),
+    /*TypeOrmModule.forRootAsync({
+      imports: [ ConfigModule],
+      useFactory: ( configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.get('DB_HOST'),
+        port: configService.get('DB_PORT'),
+        username: configService.get('DB_USER'),
+        password: configService.get('DB_PASS'),
+        database: configService.get('DB_DATABASE'),
+        ssl: true,
+        
+      })
+    }), */  
     EventEmitterModule.forRoot(),
     ScheduleModule.forRoot(),
     DatabaseModule,
