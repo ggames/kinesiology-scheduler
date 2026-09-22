@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Nestjs specific
 /dist
 /node_modules
@@ -22,3 +23,16 @@ lerna-debug.log*
 # temp directory
 .temp
 .tmp
+=======
+node_modules
+dist
+vscode/*
+.env
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+>>>>>>> 959baa6 (Actualizacion 10 - 22-09-2026)
